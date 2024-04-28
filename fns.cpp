@@ -1,5 +1,6 @@
 #include "fns.hpp"
 
+
 namespace editor {
     void getchar()
     {
@@ -13,13 +14,20 @@ namespace editor {
 
     void initialize()
     {
-        initscr();
+        if (initscr() == NULL) {
+            std::cerr << "Couldn't initialize ncurses in " << __PRETTY_FUNCTION__ << std::endl;
+            exit(1);
+        }
         noecho();
         nonl();
         keypad(stdscr, true);
-        // curs_set(0);
         raw();
-        cbreak(); // temporary
+        // if (!has_colors()) {
+        //     exit(7);
+        // }
+        start_color();
+        init_color(COLOR_YELLOW, 600, 600, 100);
+        init_pair(LINE_COLOR, COLOR_YELLOW, COLOR_BLACK);
         editor::state.maxx = getmaxx(stdscr);
         editor::state.maxy = getmaxy(stdscr);
     }
