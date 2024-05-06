@@ -22,9 +22,6 @@ namespace editor {
         nonl();
         keypad(stdscr, true);
         raw();
-        // if (!has_colors()) {
-        //     exit(7);
-        // }
         start_color();
         init_color(COLOR_YELLOW, 600, 600, 100);
         init_pair(LINE_COLOR, COLOR_YELLOW, COLOR_BLACK);
